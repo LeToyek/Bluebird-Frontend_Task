@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { create } from 'zustand';
-type ObjType = {
+export type ObjType = {
   id: number,
-  categoryId: number,
+  category_id: number,
   car_type: CarType[],
 };
 
@@ -13,8 +13,15 @@ export type CarType = {
   description: string[];
 }
 
+export type Category = {
+  id: number;
+  name: string;
+  imageUrl: string;
+}
+
 type VehicleStore = {
   vehicles: ObjType[];
+  categories: Category[];
   selectedCategory: number;
   isLoading: boolean;
   error: unknown;
@@ -24,6 +31,7 @@ type VehicleStore = {
 
 const useVehicleStore = create<VehicleStore>((set) => ({
   vehicles: [],
+  categories: [],
   selectedCategory: 0,
   isLoading: false,
   error: '',
@@ -33,10 +41,7 @@ const useVehicleStore = create<VehicleStore>((set) => ({
     try {
       const res = await axios.get("https://private-f2fbfb-ridecar2.apiary-mock.com/vehicles")
       const data = await res.data;
-
-      
-
-      set({ vehicles: data['type'], isLoading: false });
+      set({ categories: data['category'],vehicles: data['type'], isLoading: false });
     } catch (error) {
       set({ error: error, isLoading: false });
     }
