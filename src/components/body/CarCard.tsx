@@ -12,16 +12,16 @@ export default function CarCard({ car }: { car: CarType }) {
       </a>
       <div className="px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900">
+          <h5 className="text-xl font-semibold tracking-tight text-gray-500">
             {car.vehicle}
           </h5>
         </a>
-        <div className="flex items-center mt-2.5 mb-5">
+        <div className="flex flex-col mt-2.5 mb-5">
           {
             car.description.map((desc) => (
               <span
                 key={desc}
-                className="px-2 py-1 mr-2 text-sm font-medium tracking-tight text-white bg-sky-400 rounded-lg"
+                className="px-2 py-1 mr-2 text-sm font-medium "
               >
                 {desc}
               </span>
@@ -30,7 +30,7 @@ export default function CarCard({ car }: { car: CarType }) {
 
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900">
+          <span className="text-3xl font-bold text-gray-600">
             {car.price}
           </span>
           {/* <a

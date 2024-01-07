@@ -25,7 +25,7 @@ export default function CustTab({
                   "w-full py-2.5 text-sm font-medium leading-5",
                   " focus:outline-none focus:border-b-4 focus:border-blue-700 transition-all duration-300",
                   selected
-                    ? "bg-white text-blue-700 "
+                    ? "bg-white text-blue-700 border-b-4 border-blue-700"
                     : "text-blue-300  hover:text-blue-500"
                 )
               }
@@ -39,7 +39,7 @@ export default function CustTab({
             <Tab.Panel
               key={idx}
               className={classNames(
-               "flex items-center mt-2.5 mb-5"
+               "flex items-start mt-2.5 mb-5 overflow-x-auto justify-start w-full"
               )}
             >
               {cars.map((car)=>{
