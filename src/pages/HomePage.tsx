@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-import useVehicleStore from "../../store/VehicleStore";
-import CustTab from "./Tab";
+import CustTab from "../components/body/Tab";
+import useVehicleStore from "../store/VehicleStore";
 
-export default function Body() {
-  const { isLoading, initVehicles, categories,vehicles } = useVehicleStore((state) => {
+export default function HomePage() {
+  const { isLoading, categories,vehicles } = useVehicleStore((state) => {
     return {
       isLoading: state.isLoading,
       initVehicles: state.setVehicles,
@@ -14,9 +13,7 @@ export default function Body() {
   });
   // const vehicles = useVehicleStore((state) => state.vehicles)
 
-  useEffect(() => {
-    initVehicles();
-  }, []);
+ 
   return (
     <div>
       <div className="flex justify-center items-center">

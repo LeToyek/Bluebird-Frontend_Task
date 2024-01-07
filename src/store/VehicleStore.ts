@@ -32,6 +32,8 @@ type VehicleStore = {
   setSelectedCar: (car: CarType) => void;
   likeCar: (carName: string) => void;
   bookCar: (carName: string) => void;
+  getBookedCars: () => CarType[];
+  getLikedCars: () => CarType[];
 };
 
 const useVehicleStore = create<VehicleStore>((set) => ({
@@ -82,6 +84,30 @@ const useVehicleStore = create<VehicleStore>((set) => ({
     );
 
     set({ vehicles: newVehicles });
+  },
+  getBookedCars: () => {
+    const newVehicles = [...useVehicleStore.getState().vehicles];
+    const bookedCars: CarType[] = [];
+    newVehicles.map((vehicle) =>
+      vehicle.car_type.map((car) => {
+        if (car.isBooked) {
+          bookedCars.push(car);
+        }
+      })
+    );
+    return bookedCars;
+  },
+  getLikedCars: () => {
+    const newVehicles = [...useVehicleStore.getState().vehicles];
+    const likedCars: CarType[] = [];
+    newVehicles.map((vehicle) =>
+      vehicle.car_type.map((car) => {
+        if (car.isLiked) {
+          likedCars.push(car);
+        }
+      })
+    );
+    return likedCars;
   },
 }));
 
