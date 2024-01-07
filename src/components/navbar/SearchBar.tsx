@@ -39,7 +39,7 @@ export default function SearchBar() {
         );
 
   return (
-    <div className="w-full">
+    <div className="w-full z-50 sm:hidden">
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <div className="flex relative w-full items-center cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">

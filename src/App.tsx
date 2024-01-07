@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout.tsx";
+import DetailCarPage from "./pages/DetailCarPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import WishlistPage from "./pages/WishlistPage.tsx";
 
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/detail" element={<DetailCarPage />} />
           </Routes>
         </Layout>
       </div>

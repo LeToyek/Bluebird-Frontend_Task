@@ -1,4 +1,9 @@
-import { BookmarkIcon, HeartIcon, ShareIcon } from "@heroicons/react/24/outline";
+import {
+  BookmarkIcon,
+  HeartIcon,
+  ShareIcon,
+} from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 import useVehicleStore, { CarType } from "../../store/VehicleStore";
 
 function classNames(...classes: string[]) {
@@ -6,9 +11,18 @@ function classNames(...classes: string[]) {
 }
 
 export default function CarCard({ car }: { car: CarType }) {
-  const handleLike = useVehicleStore((state) => state.likeCar);
+  const { handleLike, selectCar } = useVehicleStore((state) => {
+    return {
+      selectCar: state.setSelectedCar,
+      handleLike: state.likeCar,
+    };
+  });
   return (
-    <div className="m-4 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow relative">
+    <Link
+      onClick={()=>selectCar(car)}
+      to="/detail"
+      className="m-4 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow relative"
+    >
       <a href="#">
         <img
           className="p-8 rounded-t-lg"
@@ -38,16 +52,16 @@ export default function CarCard({ car }: { car: CarType }) {
             </span>
           ))}
         </div>
-        <div className="w-full grid grid-cols-4 gap-2 absolute bottom-3 left-0 px-8">
+        <div className="w-full grid grid-cols-4 gap-2 absolute bottom-3 left-0 px-4">
           <button
             onClick={() => handleLike(car.vehicle)}
             type="button"
-            className={classNames("col-span-2 flex justify-center p-4  rounded-md mr-2 bg-blue-400")}
+            className={classNames(
+              "col-span-2 flex justify-center p-4  rounded-md mr-2 bg-blue-400"
+            )}
           >
             <BookmarkIcon
-              className={classNames(
-                "w-6 h-6 text-white"
-              )}
+              className={classNames("w-6 h-6 text-white")}
               aria-hidden="true"
             />
             <h2 className={classNames("ml-2 text-white")}>Book Now</h2>
@@ -55,7 +69,10 @@ export default function CarCard({ car }: { car: CarType }) {
           <button
             onClick={() => handleLike(car.vehicle)}
             type="button"
-            className={classNames("col-span-1 flex justify-center p-4 border-2 rounded-md mr-2 border-red-400", car.isLiked? "bg-red-400": "")}
+            className={classNames(
+              "col-span-1 flex justify-center p-4 border-2 rounded-md mr-2 border-red-400",
+              car.isLiked ? "bg-red-400" : ""
+            )}
           >
             <HeartIcon
               className={classNames(
@@ -64,7 +81,6 @@ export default function CarCard({ car }: { car: CarType }) {
               )}
               aria-hidden="true"
             />
-           
           </button>
           <button
             type="button"
@@ -74,6 +90,6 @@ export default function CarCard({ car }: { car: CarType }) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

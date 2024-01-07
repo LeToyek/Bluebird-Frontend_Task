@@ -26,6 +26,7 @@ type VehicleStore = {
   vehicles: ObjType[];
   categories: Category[];
   selectedCar: CarType;
+  selectedCategory: string;
   isLoading: boolean;
   error: unknown;
   setVehicles: () => void;
@@ -39,6 +40,7 @@ type VehicleStore = {
 const useVehicleStore = create<VehicleStore>((set) => ({
   vehicles: [],
   categories: [],
+  selectedCategory: "",
   selectedCar: {} as CarType,
   isLoading: false,
   error: "",
@@ -59,7 +61,26 @@ const useVehicleStore = create<VehicleStore>((set) => ({
       set({ error: error, isLoading: false });
     }
   },
-  setSelectedCar: (car: CarType) => set({ selectedCar: car }),
+  setSelectedCar: (car: CarType) => {
+    const newVehicles = [...useVehicleStore.getState().vehicles];
+    const categories = [...useVehicleStore.getState().categories];
+    let categoryId = 0;
+    let categoryName = "";
+    newVehicles.map((vehicle) =>
+      vehicle.car_type.map((car) => {
+        if (car.vehicle === car.vehicle) {
+          categoryId = vehicle.category_id;
+        }
+      })
+    );
+    categories.map((category) => {
+      if (category.id === categoryId) {
+        categoryName = category.name;
+      }
+    });
+    
+    set({ selectedCategory: categoryName});
+    set({ selectedCar: car })},
   likeCar: (carName: string) => {
     const newVehicles = [...useVehicleStore.getState().vehicles];
     newVehicles.map((vehicle) =>
