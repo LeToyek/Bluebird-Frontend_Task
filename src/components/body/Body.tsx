@@ -16,7 +16,6 @@ export default function Body() {
 
   useEffect(() => {
     initVehicles();
-    console.log("test initVehicles");
   }, []);
   return (
     <div>

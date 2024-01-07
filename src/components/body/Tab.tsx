@@ -39,7 +39,7 @@ export default function CustTab({
             <Tab.Panel
               key={idx}
               className={classNames(
-               "flex items-start mt-2.5 mb-5 overflow-x-auto justify-start w-full"
+               "flex flex-wrap items-start mt-2.5 mb-5 overflow-x-auto justify-center w-full"
               )}
             >
               {cars.map((car)=>{

@@ -49,7 +49,7 @@ export default function SearchBar() {
             <Combobox.Input
               placeholder="Tap to search your car"
               className="w-full border-none py-2  pr-10 text-sm leading-5 text-gray-900 focus:ring-0 focus:outline-none"
-              displayValue={(car) => car.vehicle}
+              displayValue={(car: CarType) => car.vehicle}
               onChange={(event) => setQuery(event.target.value)}
             />
             {/* <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
