@@ -8,7 +8,7 @@ function classNames(...classes: string[]) {
 export default function CarCard({ car }: { car: CarType }) {
   const handleLike = useVehicleStore((state) => state.likeCar);
   return (
-    <div className="m-4 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+    <div className="m-4 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow relative">
       <a href="#">
         <img
           className="p-8 rounded-t-lg"
@@ -31,14 +31,14 @@ export default function CarCard({ car }: { car: CarType }) {
             Add to cart
           </a> */}
         </div>
-        <div className="flex flex-col mt-2.5 mb-5">
+        <div className="flex flex-col mt-2.5 mb-16">
           {car.description.map((desc) => (
             <span key={desc} className="px-2 py-1 mr-2 text-sm font-medium ">
               {desc}
             </span>
           ))}
         </div>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="w-full grid grid-cols-4 gap-2 absolute bottom-3 left-0 px-8">
           <button
             onClick={() => handleLike(car.vehicle)}
             type="button"

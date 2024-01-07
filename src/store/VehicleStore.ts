@@ -95,6 +95,7 @@ const useVehicleStore = create<VehicleStore>((set) => ({
         }
       })
     );
+    console.log(`bookedCars: ${bookedCars}`)
     return bookedCars;
   },
   getLikedCars: () => {
